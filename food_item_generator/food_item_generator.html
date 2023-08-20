@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Item Generator</title>
+
+</head>
+<body>
+    <img src="images/logo.png" alt="Food Item Generator" id="logo">
+    <div class="flex-container">
+    <div class="flex-item"> 
+        <p class="prompt">What technical name (identifier) do you want for your food item?</p>
+        <p class="sub_prompt">(include the namespace  - Example: profe_food:pizza)</p>
+        <input class="answer" id="identifier">
+        
+        <p class="prompt">What name do you want for your food item?</p>
+        <input class="answer" id="name">
+
+        <p class="prompt">Do you want it to have the enchantment shine? (true/false)</p>
+        <input class="answer" id="enchantment">
+        
+        <p class="prompt">How big do you want the stack size to be?</p>
+        <input class="answer" id="stack">
+        
+        <p class="prompt">How many hunger points do you want it to fill 1-20?</p>
+        <input class="answer" id="nutrition">
+        
+        <p class="prompt">How long do you want it to keep you filled?</p>
+        <p class="sub_prompt">(use decimal number - exmaple: 0.8)</p>
+        <input class="answer" id="saturation">
+        
+        <p class="prompt">Do you always want to be able to eat it even if you are full? (true/false)</p>
+        <input class="answer" id="always_eat">
+
+        <p class="prompt">What's the name of the texture?</p>
+        <input class="answer" id="texture">
+        <br />
+            <button onclick="addBox()" id="myButton"></button>
+    </div>
+
+    <div class="flex-item custom-border" id="container">
+    </div>
+    </div>
+
+<script src="app.js"></script>
+</body>
+</html>

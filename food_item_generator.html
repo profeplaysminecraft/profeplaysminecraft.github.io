@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Item Generator</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: dimgray;
+        }
+        .code_container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            padding: 20px;
+        }
+
+        .left_item {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            background-color: grey;
+        }
+
+        .right_item {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            background-color: grey;
+        }
+
+        input[type="text"] {
+            align-items: center;
+            width: 200px;
+            height: 30px;
+        }
+    
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .text_final {
+            width: 500px;
+            height: 350px;
+        }
+
+        h1
+        {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: medium;
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="logo.png" alt="Food Logo">
+    </div>
+    <div class="code_container">
+        <div class="left_item">
+            <h1>What namespace do you want?</h1>
+            <input id="namespace" type="text">
+
+            <h1>What's the identifier for your food item?</h1>
+            <input id="identifier" type="text">
+
+            <h1>Do you want it to be shiny? (true/false) </h1>
+            <input id="shiny" type="text">
+
+            <h1>What stack size do you want? (number)</h1>
+            <input id="stack_size" type="text">
+ 
+            <h1>What nutritional value do you want? (up to 20 hunger points)</h1>
+            <input id="nutrition" type="text">
+
+            <h1>What saturation? (poor, low, nornal, high, good, max and supernatural)</h1>
+            <input id="saturation" type="text">
+
+            <h1>Do you always want to be able to eat this? (true/false)</h1>
+            <input id="always_eat" type="text">
+
+            <h1>What color text do you want?</h1>
+            <h1>dark blue, dark green, dark aqua, dark red, dark purple</h1>
+            <h1>gold, gray, dark gray, indigo, green, aqua, red, pink, yellow, white</h1>
+            <input id="text_color" type="text">
+
+        <div>    
+            <button onclick="saveInput()">Submit</button>
+        </div>
+        </div>
+        <div class="right_item">
+            <div>
+                <textarea id="bpCode" rows="15" class="text_final"></textarea>
+            </div>
+            
+            <div>
+                <textarea id="rpCode" rows="15" class="text_final"></textarea>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+    <script>
+      function saveInput() {
+        var namespace = document.getElementById("namespace").value;
+        var identifier = document.getElementById("identifier").value;
+        var shiny = document.getElementById("shiny").value;
+        var stack_size = document.getElementById("stack_size").value;
+        var nutrition = document.getElementById("nutrition").value;
+        var saturation = document.getElementById("saturation").value;
+        var always_eat = document.getElementById("always_eat").value;
+        var text_color = document.getElementById("text_color").value;
+
+    let foodCodeBP = `{
+    "format_version": "1.12.0",
+    "minecraft:item": {
+        "description": {
+            "identifier": "${namespace}:${identifier}"
+        },
+        "components": {
+            "minecraft:hand_equipped": false,
+            "minecraft:stacked_by_data": true,
+            "minecraft:foil": ${shiny},
+            "minecraft:max_stack_size": ${stack_size},
+            "minecraft:use_duration": 32,
+            "minecraft:food": {
+                "nutrition": ${nutrition},
+                "saturation_modifier": "${saturation}",
+                "can_always_eat": ${always_eat}
+            }
+        }
+    }
+}`;
+
+let foodCodeRP = `{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "description": {
+            "identifier": "${namespace}:${identifier}",
+            "category": "Nature"
+        },
+        "components": {
+            "minecraft:icon": "${identifier}",
+            "minecraft:use_animation": "eat",
+            "minecraft:hover_text_color": "${text_color}",
+            "minecraft:render_offsets": "apple"
+        }
+    }
+}`;
+
+document.getElementById("bpCode").value = foodCodeBP;
+document.getElementById("rpCode").value = foodCodeRP;
+
+      }
+
+    </script>
+</body>
+</html>
