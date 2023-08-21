@@ -50,7 +50,7 @@ body {
 
 .flex-width-item {
     border: 10px solid #4df627;
-    flex-basis: 300px;
+    flex-basis: 1px;
   }
 
 #container {
