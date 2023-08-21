@@ -16,7 +16,6 @@ body {
 .flex-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
 }
 
 .flex-item {
@@ -49,8 +48,9 @@ body {
 
 }
 
-.custom-border {
+.flex-width-item {
     border: 10px solid #4df627;
+    flex-basis: 300px;
   }
 
 #container {
